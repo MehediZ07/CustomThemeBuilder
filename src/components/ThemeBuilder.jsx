@@ -1,31 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
-import { themes, collections, items } from '../data/mockData';
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
-import HeroSection from './sections/HeroSection.jsx';
-import CollectionsSection from './sections/CollectionsSection.jsx';
-import ItemsSection from './sections/ItemsSection.jsx';
-import BundleSection from './sections/BundleSection.jsx';
-import SubscriptionSection from './sections/SubscriptionSection.jsx';
+import { collections, items, bundles, subscriptions } from '../data/mockData';
+import { getAllThemes, getTheme } from '../themes';
+import ThemeRenderer from './ThemeRenderer';
 import Sidebar from './Sidebar.jsx';
 
 const ThemeBuilder = () => {
+  const themes = getAllThemes();
   const [selectedTheme, setSelectedTheme] = useState(themes[0]);
   const [sections, setSections] = useState(themes[0].sections);
   const [isPreview, setIsPreview] = useState(false);
-  const [styles, setStyles] = useState({
-    primaryColor: '#3b82f6',
-    backgroundColor: '#ffffff',
-    textColor: '#1f2937',
-    fontFamily: 'Inter',
-    borderRadius: '8px',
-    cardSize: 'medium',
-    heroImage: 'https://daujxgrs0jsvx.cloudfront.net/media/Banner (1)_25XIYcj.jpg',
-    heroTitle: 'UNLIMITED CREATIVITY AT YOUR FINGERTIPS!'
-  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [config, setConfig] = useState(selectedTheme.defaultConfig);
+  const data = useMemo(() => ({ collections, items, bundles, subscriptions }), []);
 
-  const handleDragEnd = (result) => {
+  const handleDragEnd = useCallback((result) => {
     if (!result.destination) return;
 
     const newSections = Array.from(sections);
@@ -33,37 +22,30 @@ const ThemeBuilder = () => {
     newSections.splice(result.destination.index, 0, reorderedItem);
 
     setSections(newSections.map((section, index) => ({ ...section, order: index })));
-  };
+  }, [sections]);
 
-  const renderSection = (section) => {
-    switch (section.type) {
-      case 'hero':
-        return <HeroSection styles={styles} />;
-      case 'collections':
-        return <CollectionsSection collections={collections} styles={styles} />;
-      case 'items':
-        return <ItemsSection items={items} styles={styles} />;
-      case 'bundles':
-        return <BundleSection styles={styles} />;
-      case 'subscription':
-        return <SubscriptionSection styles={styles} />;
-      default:
-        return null;
+  const handleThemeChange = useCallback(async (themeId) => {
+    setIsLoading(true);
+    try {
+      const theme = getTheme(themeId);
+      setSelectedTheme(theme);
+      setSections(theme.sections);
+      setConfig(theme.defaultConfig);
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, []);
 
   if (isPreview) {
     return (
       <div className="bg-black min-h-screen">
-        <div className="bg-white">
-          <Header theme={selectedTheme.name.toLowerCase()} />
-          {sections.map((section) => (
-            <div key={section.id}>
-              {renderSection(section)}
-            </div>
-          ))}
-          <Footer theme={selectedTheme.name.toLowerCase()} />
-        </div>
+        <ThemeRenderer 
+          themeId={selectedTheme.id}
+          config={config}
+          data={data}
+          sections={sections}
+          isPreview={true}
+        />
         <button 
           onClick={() => setIsPreview(false)}
           className="fixed top-4 right-4 bg-white px-4 py-2 rounded shadow-lg"
@@ -77,6 +59,13 @@ const ThemeBuilder = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       <div className="flex-1 overflow-auto">
+        {isLoading && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-4 rounded-lg">
+              <div className="text-center">Loading theme...</div>
+            </div>
+          </div>
+        )}
         <div className="p-4">
           <div className="mb-4">
             <h1 className="text-2xl font-bold mb-2">Template Preview</h1>
@@ -104,7 +93,13 @@ const ThemeBuilder = () => {
                                 <span className="text-xs text-gray-400">Drag to reorder</span>
                               </div>
                             </div>
-                            {renderSection(section)}
+                            <ThemeRenderer 
+                              themeId={selectedTheme.id}
+                              config={config}
+                              data={data}
+                              sections={[section]}
+                              sectionOnly={true}
+                            />
                           </div>
                         </div>
                       )}
@@ -119,11 +114,10 @@ const ThemeBuilder = () => {
       </div>
 
       <Sidebar 
-        styles={styles} 
-        setStyles={setStyles} 
+        config={config} 
+        setConfig={setConfig} 
         selectedTheme={selectedTheme}
-        setSelectedTheme={setSelectedTheme}
-        setSections={setSections}
+        onThemeChange={handleThemeChange}
         themes={themes}
         setIsPreview={setIsPreview}
       />

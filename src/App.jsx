@@ -1,9 +1,12 @@
 import ThemeBuilder from './components/ThemeBuilder.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 
 function App() {
   return (
     <div className="App">
-      <ThemeBuilder />
+      <ErrorBoundary>
+        <ThemeBuilder />
+      </ErrorBoundary>
     </div>
   );
 }
