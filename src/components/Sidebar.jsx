@@ -159,44 +159,86 @@ const Sidebar = ({ config, setConfig, selectedTheme, onThemeChange, themes, setI
                 <div className="pl-2">
                   <ColorPicker
                     label="Primary Color"
-                    value={config.primaryColor || '#3b82f6'}
-                    onChange={(value) => handleConfigChange('primaryColor', value)}
+                    value={config.colors?.primary || config.primaryColor || '#3b82f6'}
+                    onChange={(value) => {
+                      if (config.colors) {
+                        setConfig(prev => ({ ...prev, colors: { ...prev.colors, primary: value } }));
+                      } else {
+                        handleConfigChange('primaryColor', value);
+                      }
+                    }}
                     description="Main brand color for buttons and accents"
                   />
                   <ColorPicker
                     label="Secondary Color"
-                    value={config.secondaryColor || '#6b7280'}
-                    onChange={(value) => handleConfigChange('secondaryColor', value)}
+                    value={config.colors?.secondary || config.secondaryColor || '#6b7280'}
+                    onChange={(value) => {
+                      if (config.colors) {
+                        setConfig(prev => ({ ...prev, colors: { ...prev.colors, secondary: value } }));
+                      } else {
+                        handleConfigChange('secondaryColor', value);
+                      }
+                    }}
                     description="Secondary buttons and elements"
                   />
                   <ColorPicker
                     label="Background Color"
-                    value={config.backgroundColor || '#ffffff'}
-                    onChange={(value) => handleConfigChange('backgroundColor', value)}
+                    value={config.colors?.background || config.backgroundColor || '#ffffff'}
+                    onChange={(value) => {
+                      if (config.colors) {
+                        setConfig(prev => ({ ...prev, colors: { ...prev.colors, background: value } }));
+                      } else {
+                        handleConfigChange('backgroundColor', value);
+                      }
+                    }}
                     description="Main page background"
                   />
                   <ColorPicker
                     label="Surface Color"
-                    value={config.surfaceColor || '#f9fafb'}
-                    onChange={(value) => handleConfigChange('surfaceColor', value)}
+                    value={config.colors?.surface || config.surfaceColor || '#f9fafb'}
+                    onChange={(value) => {
+                      if (config.colors) {
+                        setConfig(prev => ({ ...prev, colors: { ...prev.colors, surface: value } }));
+                      } else {
+                        handleConfigChange('surfaceColor', value);
+                      }
+                    }}
                     description="Cards and elevated surfaces"
                   />
                   <ColorPicker
                     label="Text Primary"
-                    value={config.textColor || '#1f2937'}
-                    onChange={(value) => handleConfigChange('textColor', value)}
+                    value={config.colors?.text || config.textColor || '#1f2937'}
+                    onChange={(value) => {
+                      if (config.colors) {
+                        setConfig(prev => ({ ...prev, colors: { ...prev.colors, text: value } }));
+                      } else {
+                        handleConfigChange('textColor', value);
+                      }
+                    }}
                     description="Main text color"
                   />
                   <ColorPicker
                     label="Text Secondary"
-                    value={config.textSecondary || '#6b7280'}
-                    onChange={(value) => handleConfigChange('textSecondary', value)}
+                    value={config.colors?.textSecondary || config.textSecondary || '#6b7280'}
+                    onChange={(value) => {
+                      if (config.colors) {
+                        setConfig(prev => ({ ...prev, colors: { ...prev.colors, textSecondary: value } }));
+                      } else {
+                        handleConfigChange('textSecondary', value);
+                      }
+                    }}
                     description="Secondary text and descriptions"
                   />
                   <ColorPicker
                     label="Border Color"
-                    value={config.borderColor || '#e5e7eb'}
-                    onChange={(value) => handleConfigChange('borderColor', value)}
+                    value={config.colors?.border || config.borderColor || '#e5e7eb'}
+                    onChange={(value) => {
+                      if (config.colors) {
+                        setConfig(prev => ({ ...prev, colors: { ...prev.colors, border: value } }));
+                      } else {
+                        handleConfigChange('borderColor', value);
+                      }
+                    }}
                     description="Borders and dividers"
                   />
                 </div>
@@ -539,16 +581,16 @@ const Sidebar = ({ config, setConfig, selectedTheme, onThemeChange, themes, setI
         <div 
           className="p-3 border rounded-lg"
           style={{ 
-            backgroundColor: config.surfaceColor || '#f9fafb',
+            backgroundColor: config.colors?.surface || config.surfaceColor || '#f9fafb',
             borderRadius: config.borderRadius || '8px',
-            borderColor: config.borderColor || '#e5e7eb'
+            borderColor: config.colors?.border || config.borderColor || '#e5e7eb'
           }}
         >
           <h4 
             className="text-sm font-semibold mb-2"
             style={{ 
-              color: config.textColor || '#1f2937',
-              fontFamily: config.fontFamily || 'Inter',
+              color: config.colors?.text || config.textColor || '#1f2937',
+              fontFamily: config.typography?.fontFamily || config.fontFamily || 'Inter',
               fontSize: config.baseFontSize || '16px'
             }}
           >
@@ -557,8 +599,8 @@ const Sidebar = ({ config, setConfig, selectedTheme, onThemeChange, themes, setI
           <p 
             className="text-xs mb-3"
             style={{ 
-              color: config.textSecondary || '#6b7280',
-              fontFamily: config.fontFamily || 'Inter'
+              color: config.colors?.textSecondary || config.textSecondary || '#6b7280',
+              fontFamily: config.typography?.fontFamily || config.fontFamily || 'Inter'
             }}
           >
             This is sample text to preview your styling choices.
@@ -567,7 +609,7 @@ const Sidebar = ({ config, setConfig, selectedTheme, onThemeChange, themes, setI
             <button 
               className="px-3 py-1 text-xs font-medium rounded transition-colors"
               style={{ 
-                backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#3b82f6',
+                backgroundColor: config.buttonPrimaryBg || config.colors?.primary || config.primaryColor || '#3b82f6',
                 color: config.buttonPrimaryText || '#ffffff',
                 borderRadius: config.buttonBorderRadius || config.borderRadius || '8px'
               }}

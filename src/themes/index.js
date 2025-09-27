@@ -8,8 +8,8 @@ import { designpullerTheme } from './designpuller/index.js';
 export const themeRegistry = {
   'sellzzy': sellzzyTheme,
   'designpuller': designpullerTheme,
-  'modern-grid': modernGridTheme,
   'vibrant-collage': vibrantCollageTheme,
+  'modern-grid': modernGridTheme,
   'classic-layout': classicLayoutTheme,
 };
 

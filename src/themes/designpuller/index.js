@@ -65,6 +65,25 @@ export const designpullerTheme = {
     layout: {
       maxWidth: '1200px',
       containerPadding: '1rem'
-    }
+    },
+    // Sidebar compatibility
+    borderRadius: '8px',
+    fontFamily: 'Inter',
+    baseFontSize: '16px',
+    buttonPrimaryBg: '#8B5CF6',
+    buttonPrimaryText: '#FFFFFF',
+    buttonSecondaryBg: '#374151',
+    buttonSecondaryText: '#D1D5DB',
+    buttonBorderRadius: '8px',
+    heroImage: 'https://daujxgrs0jsvx.cloudfront.net/media/Background.png',
+    heroTitle: '#1 DESIGN LIBRARY',
+    heroSubtitle: 'Perfect for POD, Craft & More',
+    heroOverlay: '#000000',
+    heroOverlayOpacity: '0.6',
+    itemsPerRow: '4',
+    cardShadow: 'medium',
+    buttonShadow: 'small',
+    transitionSpeed: 'medium',
+    hoverEffects: 'enabled'
   }
 };

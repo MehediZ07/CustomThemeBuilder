@@ -1,126 +1,181 @@
 import React from 'react';
 
 const Footer = ({ config }) => {
-  const footerSections = {
-    'Information': ['About', 'FAQ', 'Sitemap'],
-    'Useful Links': ['Top tracks', 'Pricing', 'Contact'],
-    'Resources': ['Tutorials', 'Blogs', 'Tools'],
-    'Legals': ['Privacy', 'Terms', 'Refunds']
-  };
-
-  const socialIcons = [
-    { name: 'Facebook', icon: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' },
-    { name: 'Twitter', icon: 'M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z' },
-    { name: 'YouTube', icon: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z' },
-    { name: 'Pinterest', icon: 'M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z' },
-    { name: 'Instagram', icon: 'M12.017 0C8.396 0 7.989.013 6.77.072 5.56.132 4.708.333 3.999.63c-.765.319-1.414.74-2.063 1.389S.319 3.235 0 4.001C-.297 4.708-.498 5.56-.558 6.77-.618 7.99-.63 8.396-.63 12.017c0 3.624.012 4.027.072 5.247.06 1.21.261 2.062.558 2.769.319.765.74 1.414 1.389 2.063s1.298 1.07 2.063 1.389c.708.297 1.56.498 2.769.558 1.22.06 1.624.072 5.247.072 3.624 0 4.027-.012 5.247-.072 1.21-.06 2.062-.261 2.769-.558.765-.319 1.414-.74 2.063-1.389s1.07-1.298 1.389-2.063c.297-.708.498-1.56.558-2.769.06-1.22.072-1.624.072-5.247 0-3.624-.012-4.027-.072-5.247-.06-1.21-.261-2.062-.558-2.769-.319-.765-.74-1.414-1.389-2.063S19.235.319 18.469 0C17.761-.297 16.909-.498 15.699-.558 14.479-.618 14.073-.63 10.453-.63zm0 2.16c3.555 0 3.978.013 5.38.072 1.299.06 2.006.276 2.476.458.622.242 1.066.532 1.532.998.466.466.756.91.998 1.532.182.47.398 1.177.458 2.476.059 1.402.072 1.825.072 5.38s-.013 3.978-.072 5.38c-.06 1.299-.276 2.006-.458 2.476-.242.622-.532 1.066-.998 1.532-.466.466-.91.756-1.532.998-.47.182-1.177.398-2.476.458-1.402.059-1.825.072-5.38.072s-3.978-.013-5.38-.072c-1.299-.06-2.006-.276-2.476-.458-.622-.242-1.066-.532-1.532-.998-.466-.466-.756-.91-.998-1.532-.182-.47-.398-1.177-.458-2.476C2.173 15.995 2.16 15.572 2.16 12.017s.013-3.978.072-5.38c.06-1.299.276-2.006.458-2.476.242-.622.532-1.066.998-1.532.466-.466.91-.756 1.532-.998.47-.182 1.177-.398 2.476-.458C8.038 2.173 8.461 2.16 12.017 2.16zm0 3.678c-2.269 0-4.108 1.839-4.108 4.108 0 2.269 1.839 4.108 4.108 4.108 2.269 0 4.108-1.839 4.108-4.108 0-2.269-1.839-4.108-4.108-4.108zm0 6.775c-1.473 0-2.667-1.194-2.667-2.667 0-1.473 1.194-2.667 2.667-2.667 1.473 0 2.667 1.194 2.667 2.667 0 1.473-1.194 2.667-2.667 2.667zm5.23-6.937c0 .53-.43.96-.96.96s-.96-.43-.96-.96.43-.96.96-.96.96.43.96.96z' }
-  ];
-
   return (
-    <>
-      <footer 
-        className="py-16"
-        style={{ backgroundColor: config.colors.background }}
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
-            {/* Logo & Description */}
-            <div className="lg:col-span-2">
-              <h3 
-                className="text-2xl font-bold mb-4"
-                style={{ color: config.colors.text }}
-              >
-                DESIGNPULLER
-              </h3>
-              <p 
-                className="mb-6"
-                style={{ color: config.colors.textSecondary }}
-              >
-                Your ultimate destination for premium design resources. 
-                Perfect for POD, crafts, and creative projects.
-              </p>
-            </div>
-
-            {/* Navigation Sections */}
-            {Object.entries(footerSections).map(([title, links]) => (
-              <div key={title}>
-                <h4 
-                  className="font-semibold mb-4"
-                  style={{ color: config.colors.text }}
-                >
-                  {title}
-                </h4>
-                <ul className="space-y-2">
-                  {links.map((link) => (
-                    <li key={link}>
-                      <a 
-                        href="#" 
-                        className="hover:opacity-80 transition-opacity"
-                        style={{ color: config.colors.textSecondary }}
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex justify-center mb-8">
-            <div className="flex space-x-4">
-              {socialIcons.map((social) => (
-                <a 
-                  key={social.name}
-                  href="#" 
-                  className="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-all hover:scale-110"
-                  style={{ 
-                    color: config.colors.textSecondary,
-                    backgroundColor: `${config.colors.surface}20`
-                  }}
-                  title={social.name}
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                    <path d={social.icon} />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Follow on Shop Button */}
-          <div className="text-center mb-8">
-            <button 
-              className="px-6 py-3 rounded-lg font-medium text-white transition-transform hover:scale-105"
-              style={{ backgroundColor: config.colors.primary }}
+    <footer 
+      className="mt-16 text-white relative overflow-hidden"
+      style={{ 
+        backgroundColor: config.colors.background
+      }}
+    >
+      {/* Animated background elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-20 h-20 bg-white rounded-full animate-pulse"></div>
+        <div className="absolute top-32 right-20 w-16 h-16 bg-white rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-20 left-32 w-12 h-12 bg-white rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-32 right-16 w-24 h-24 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 py-12 relative z-10">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center space-x-3 mb-6">
+            <div 
+              className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg"
+              style={{ backgroundColor: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)' }}
             >
-              Follow on Shop
-            </button>
+              DP
+            </div>
+            <h2 
+              className="text-3xl font-bold"
+              style={{ 
+                fontFamily: config.typography.fontFamily,
+                textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+              }}
+            >
+              DESIGNPULLER
+            </h2>
           </div>
-
-          {/* Bottom Row */}
-          <div 
-            className="pt-8 border-t text-center"
-            style={{ borderColor: config.colors.border }}
+          <p 
+            className="text-lg max-w-2xl mx-auto leading-relaxed opacity-90"
+            style={{
+              fontFamily: config.typography.fontFamily,
+              textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+            }}
           >
-            <p style={{ color: config.colors.textSecondary }}>
-              © 2025 DesignPuller. All rights reserved.
-            </p>
+            Designpuller.com is home to the latest, quality premium bundles, SVG, Sublimations, Epics, Crafts and many other design 
+            resources, including Premium New Items, Best Sellers, and Featured resources with our lifetime download guarantee and unlimited 
+            support - we are sure you will love shopping with us.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+          <div>
+            <h3 
+              className="font-semibold mb-4 text-white"
+              style={{ fontFamily: config.typography.fontFamily }}
+            >
+              All Items
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">New Arrivals</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Best Sellers</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Featured</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 
+              className="font-semibold mb-4 text-white"
+              style={{ fontFamily: config.typography.fontFamily }}
+            >
+              Bundles
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Premium Bundles</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Design Packs</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Seasonal</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 
+              className="font-semibold mb-4 text-white"
+              style={{ fontFamily: config.typography.fontFamily }}
+            >
+              Collections
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">SVG Files</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Sublimation</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Crafts</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 
+              className="font-semibold mb-4 text-white"
+              style={{ fontFamily: config.typography.fontFamily }}
+            >
+              Subscriptions
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Monthly Plans</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Annual Plans</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Free Trial</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 
+              className="font-semibold mb-4 text-white"
+              style={{ fontFamily: config.typography.fontFamily }}
+            >
+              Support
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Downloads</a></li>
+            </ul>
           </div>
         </div>
-      </footer>
 
-      {/* Floating Chat Button */}
-      <button 
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full text-white shadow-lg transition-transform hover:scale-110 z-50"
-        style={{ backgroundColor: config.colors.primary }}
-      >
-        <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
-      </button>
-    </>
+        <div className="border-t border-white/20 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+            <div className="mb-6 md:mb-0">
+              <h4 
+                className="text-white font-semibold mb-3"
+                style={{ fontFamily: config.typography.fontFamily }}
+              >
+                Stay Creative
+              </h4>
+              <div className="flex">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email address" 
+                  className="px-4 py-3 rounded-l-lg bg-white/20 text-white border border-white/30 focus:border-white focus:outline-none w-64 placeholder-white/70 backdrop-blur-sm"
+                />
+                <button 
+                  className="px-6 py-3 bg-white rounded-r-lg font-medium hover:bg-white/90 transition-colors"
+                  style={{ 
+                    color: config.colors.primary,
+                    fontFamily: config.typography.fontFamily
+                  }}
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex space-x-6">
+              <a href="#" className="text-white/80 hover:text-white transition-colors">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="#" className="text-white/80 hover:text-white transition-colors">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                </svg>
+              </a>
+              <a href="#" className="text-white/80 hover:text-white transition-colors">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.221.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.747 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001.017.001z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <div className="text-center border-t border-white/20 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center text-sm">
+              <div className="flex flex-wrap justify-center md:justify-start space-x-4 mb-4 md:mb-0">
+                <a href="#" className="text-white/80 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="text-white/80 hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" className="text-white/80 hover:text-white transition-colors">Returns & Exchanges</a>
+                <a href="#" className="text-white/80 hover:text-white transition-colors">Agreement</a>
+              </div>
+              <p className="text-white/80">© 2024 Designpuller, all rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

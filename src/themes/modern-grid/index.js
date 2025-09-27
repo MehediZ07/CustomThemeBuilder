@@ -1,5 +1,5 @@
-import { ClassicHeader } from './components/Header.jsx';
-import { ClassicFooter } from './components/Footer.jsx';
+import Header from './components/Header.jsx';
+import Footer from './components/Footer.jsx';
 import { ClassicHeroSection } from './components/HeroSection.jsx';
 import { ClassicCollectionsSection } from './components/CollectionsSection.jsx';
 import { ClassicItemsSection } from './components/ItemsSection.jsx';
@@ -12,9 +12,45 @@ export const modernGridTheme = {
   description: 'Traditional, elegant layout design',
   category: 'ecommerce',
   
-  // Default configuration
   defaultConfig: {
-    // Colors
+    colors: {
+      primary: '#2563eb',
+      secondary: '#64748b',
+      accent: '#f59e0b',
+      background: '#f8fafc',
+      surface: '#ffffff',
+      text: '#1e293b',
+      textSecondary: '#64748b',
+      border: '#e2e8f0'
+    },
+    typography: {
+      fontFamily: 'Georgia, serif',
+      headingFont: 'Georgia, serif',
+      fontSize: {
+        xs: '0.75rem',
+        sm: '0.875rem',
+        base: '1rem',
+        lg: '1.125rem',
+        xl: '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem'
+      }
+    },
+    spacing: {
+      xs: '0.5rem',
+      sm: '1rem',
+      md: '1.5rem',
+      lg: '2rem',
+      xl: '3rem',
+      '2xl': '4rem'
+    },
+    layout: {
+      maxWidth: '1200px',
+      containerPadding: '1rem'
+    },
+    // Sidebar compatibility
     primaryColor: '#2563eb',
     secondaryColor: '#64748b',
     backgroundColor: '#f8fafc',
@@ -22,48 +58,24 @@ export const modernGridTheme = {
     textColor: '#1e293b',
     textSecondary: '#64748b',
     borderColor: '#e2e8f0',
-    
-    // Typography
+    borderRadius: '4px',
     fontFamily: 'Georgia',
     baseFontSize: '16px',
-    lineHeight: '1.6',
-    fontWeight: '400',
-    
-    // Spacing & Layout
-    borderRadius: '4px',
-    containerPadding: '20px',
-    sectionSpacing: '56px',
-    cardSpacing: '28px',
-    
-    // Buttons
     buttonPrimaryBg: '#2563eb',
     buttonPrimaryText: '#ffffff',
     buttonSecondaryBg: '#f1f5f9',
     buttonSecondaryText: '#334155',
     buttonBorderRadius: '4px',
-    buttonSize: 'large',
-    
-    // Sections
     heroImage: 'https://daujxgrs0jsvx.cloudfront.net/media/Banner (1)_25XIYcj.jpg',
     heroTitle: 'PREMIUM DESIGN COLLECTIONS',
     heroSubtitle: 'Elegant and timeless design resources for professionals',
     heroOverlay: '#1e293b',
     heroOverlayOpacity: '0.5',
-    
-    // Items Section
     itemsPerRow: '3',
-    itemsBackground: '#f8fafc',
-    itemCardBg: '#ffffff',
-    itemCardRadius: '4px',
-    
-    // Effects
     cardShadow: 'large',
     buttonShadow: 'medium',
     transitionSpeed: 'medium',
-    hoverEffects: 'enabled',
-    
-    // Legacy
-    cardSize: 'large'
+    hoverEffects: 'enabled'
   },
 
   // Section configuration (different order than modern)
@@ -77,8 +89,8 @@ export const modernGridTheme = {
 
   // Theme-specific components
   components: {
-    Header: ClassicHeader,
-    Footer: ClassicFooter,
+    Header: Header,
+    Footer: Footer,
     sections: {
       hero: ClassicHeroSection,
       collections: ClassicCollectionsSection,
