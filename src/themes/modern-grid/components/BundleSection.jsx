@@ -1,12 +1,12 @@
 import React from 'react';
 
-export const ModernBundleSection = ({ config, data }) => {
+export const ClassicBundleSection = ({ config, data }) => {
   const getShadowClass = () => {
-    const shadow = config.cardShadow || 'medium';
+    const shadow = config.cardShadow || 'large';
     return {
       'none': '',
       'small': 'shadow-sm hover:shadow-md',
-      'medium': 'shadow-md hover:shadow-lg', 
+      'medium': 'shadow-md hover:shadow-lg',
       'large': 'shadow-lg hover:shadow-xl',
       'xl': 'shadow-xl hover:shadow-2xl'
     }[shadow] || 'shadow-lg hover:shadow-xl';
@@ -24,115 +24,160 @@ export const ModernBundleSection = ({ config, data }) => {
   return (
     <div 
       style={{
-        backgroundColor: config.surfaceColor || '#ffffff',
-        paddingTop: config.sectionSpacing || '48px',
-        paddingBottom: config.sectionSpacing || '48px',
-        paddingLeft: config.containerPadding || '16px',
-        paddingRight: config.containerPadding || '16px'
+        backgroundColor: config.itemsBackground || '#f8fafc',
+        paddingTop: config.sectionSpacing || '56px',
+        paddingBottom: config.sectionSpacing || '56px',
+        paddingLeft: config.containerPadding || '20px',
+        paddingRight: config.containerPadding || '20px'
       }}
     >
-      <h2 
-        className="text-center mb-8 font-bold"
-        style={{ 
-          color: config.textColor || '#1f2937', 
-          fontFamily: config.fontFamily || 'Inter',
-          fontSize: `calc(${config.baseFontSize || '16px'} * 1.875)`
-        }}
-      >
-        Bundles
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto" style={{ gap: config.cardSpacing || '24px' }}>
-        {data.bundles.map((bundle) => (
-          <div 
-            key={bundle.id}
-            className={`overflow-hidden ${getShadowClass()} ${getTransitionClass()}`}
-            style={{
-              backgroundColor: config.itemCardBg || '#ffffff',
-              borderRadius: config.itemCardRadius || config.borderRadius || '8px',
-              border: `1px solid ${config.borderColor || '#e5e7eb'}`
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 
+            className="font-bold mb-4"
+            style={{ 
+              color: config.textColor || '#1e293b', 
+              fontFamily: config.fontFamily || 'Georgia',
+              fontSize: `calc(${config.baseFontSize || '16px'} * 2.25)`
             }}
           >
-            <img 
-              src={bundle.image_url} 
-              alt={bundle.title}
-              className="w-full h-64 object-cover"
-            />
-            <div style={{ padding: config.containerPadding || '16px' }}>
-              <h3 
-                className="font-semibold mb-2 line-clamp-2"
-                style={{
-                  color: config.textColor || '#1f2937',
-                  fontFamily: config.fontFamily || 'Inter',
-                  fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`
-                }}
-              >
-                {bundle.title}
-              </h3>
-              <div className="flex items-center justify-between">
-                <div>
-                  <span 
-                    className="text-xl font-bold" 
-                    style={{ 
-                      color: config.primaryColor || '#3b82f6',
-                      fontFamily: config.fontFamily || 'Inter'
-                    }}
-                  >
-                    ${bundle.price}
-                  </span>
-                  {bundle.comparePrice && (
+            Premium Bundles
+          </h2>
+          <p 
+            style={{
+              color: config.textSecondary || '#64748b',
+              fontFamily: config.fontFamily || 'Georgia',
+              fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`
+            }}
+          >
+            Complete design collections at exceptional value
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto" style={{ gap: config.cardSpacing || '28px' }}>
+          {data.bundles.map((bundle) => (
+            <div 
+              key={bundle.id}
+              className={`overflow-hidden ${getShadowClass()} ${getTransitionClass()}`}
+              style={{
+                backgroundColor: config.itemCardBg || '#ffffff',
+                borderRadius: config.itemCardRadius || config.borderRadius || '4px',
+                border: `1px solid ${config.borderColor || '#e2e8f0'}`
+              }}
+            >
+              <div className="relative">
+                <img 
+                  src={bundle.image_url} 
+                  alt={bundle.title}
+                  className="w-full h-56 object-cover"
+                />
+                <div 
+                  className="absolute top-4 right-4 px-3 py-1 text-sm font-semibold"
+                  style={{
+                    backgroundColor: config.primaryColor || '#2563eb',
+                    color: config.buttonPrimaryText || '#ffffff',
+                    borderRadius: config.borderRadius || '4px'
+                  }}
+                >
+                  Bundle
+                </div>
+              </div>
+              
+              <div style={{ padding: `calc(${config.containerPadding || '20px'} * 1.2)` }}>
+                <h3 
+                  className="font-bold mb-3 line-clamp-2"
+                  style={{
+                    color: config.textColor || '#1e293b',
+                    fontFamily: config.fontFamily || 'Georgia',
+                    fontSize: `calc(${config.baseFontSize || '16px'} * 1.25)`,
+                    lineHeight: config.lineHeight || '1.6'
+                  }}
+                >
+                  {bundle.title}
+                </h3>
+                
+                <p 
+                  className="mb-4 line-clamp-2"
+                  style={{
+                    color: config.textSecondary || '#64748b',
+                    fontFamily: config.fontFamily || 'Georgia',
+                    fontSize: `calc(${config.baseFontSize || '16px'} * 0.875)`
+                  }}
+                >
+                  {bundle.description}
+                </p>
+                
+                <div className="flex items-center justify-between mb-4">
+                  <div>
                     <span 
-                      className="text-sm line-through ml-2"
+                      className="font-bold" 
                       style={{ 
-                        color: config.textSecondary || '#6b7280',
-                        fontFamily: config.fontFamily || 'Inter'
+                        color: config.primaryColor || '#2563eb',
+                        fontFamily: config.fontFamily || 'Georgia',
+                        fontSize: `calc(${config.baseFontSize || '16px'} * 1.5)`
                       }}
                     >
-                      ${bundle.comparePrice}
+                      ${bundle.price}
                     </span>
-                  )}
+                    {bundle.comparePrice && (
+                      <span 
+                        className="line-through ml-2"
+                        style={{ 
+                          color: config.textSecondary || '#64748b',
+                          fontFamily: config.fontFamily || 'Georgia',
+                          fontSize: config.baseFontSize || '16px'
+                        }}
+                      >
+                        ${bundle.comparePrice}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="flex space-x-2">
+                
+                <div className="flex space-x-3">
                   <button 
-                    className={`px-4 py-2 text-sm font-medium ${getTransitionClass()}`}
+                    className={`flex-1 py-3 font-semibold ${getTransitionClass()}`}
                     style={{
-                      backgroundColor: config.buttonSecondaryBg || '#f3f4f6',
-                      color: config.buttonSecondaryText || '#374151',
-                      borderRadius: config.buttonBorderRadius || config.borderRadius || '8px',
-                      border: `1px solid ${config.borderColor || '#e5e7eb'}`,
-                      fontFamily: config.fontFamily || 'Inter'
+                      backgroundColor: config.buttonSecondaryBg || '#f1f5f9',
+                      color: config.buttonSecondaryText || '#334155',
+                      borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
+                      border: `1px solid ${config.borderColor || '#e2e8f0'}`,
+                      fontFamily: config.fontFamily || 'Georgia'
                     }}
                   >
-                    View Product
+                    Preview
                   </button>
                   <button 
-                    className={`px-4 py-2 text-sm font-medium ${getTransitionClass()}`}
-                    style={{
-                      backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#3b82f6',
+                    className={`flex-1 py-3 font-semibold ${getTransitionClass()}`}
+                    style={{ 
+                      backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#2563eb',
                       color: config.buttonPrimaryText || '#ffffff',
-                      borderRadius: config.buttonBorderRadius || config.borderRadius || '8px',
-                      fontFamily: config.fontFamily || 'Inter'
+                      borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
+                      fontFamily: config.fontFamily || 'Georgia'
                     }}
                   >
-                    Add to Cart
+                    Get Bundle
                   </button>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="text-center" style={{ marginTop: config.cardSpacing || '24px' }}>
-        <a 
-          href="#" 
-          className="font-medium hover:underline"
-          style={{ 
-            color: config.primaryColor || '#3b82f6',
-            fontFamily: config.fontFamily || 'Inter',
-            fontSize: config.baseFontSize || '16px'
-          }}
-        >
-          View All
-        </a>
+          ))}
+        </div>
+        
+        <div className="text-center" style={{ marginTop: `calc(${config.cardSpacing || '28px'} * 2)` }}>
+          <button 
+            className={`px-8 py-4 font-bold ${getTransitionClass()}`}
+            style={{ 
+              backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#2563eb',
+              color: config.buttonPrimaryText || '#ffffff',
+              borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
+              fontFamily: config.fontFamily || 'Georgia',
+              fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`
+            }}
+          >
+            View All Bundles
+          </button>
+        </div>
       </div>
     </div>
   );

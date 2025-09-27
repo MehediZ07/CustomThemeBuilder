@@ -1,91 +1,53 @@
 import React from 'react';
 
-export const ModernCollectionsSection = ({ config, data }) => {
-  const getShadowClass = () => {
-    const shadow = config.cardShadow || 'medium';
-    return {
-      'none': '',
-      'small': 'shadow-sm hover:shadow-md',
-      'medium': 'shadow-md hover:shadow-lg',
-      'large': 'shadow-lg hover:shadow-xl',
-      'xl': 'shadow-xl hover:shadow-2xl'
-    }[shadow] || 'shadow-md hover:shadow-lg';
-  };
-
-  const getTransitionClass = () => {
-    const speed = config.transitionSpeed || 'medium';
-    return {
-      'fast': 'transition-all duration-150',
-      'medium': 'transition-all duration-300',
-      'slow': 'transition-all duration-500'
-    }[speed] || 'transition-all duration-300';
-  };
-
+export const ClassicCollectionsSection = ({ config, data }) => {
   return (
-    <div 
-      style={{
-        backgroundColor: config.surfaceColor || '#ffffff',
-        paddingTop: config.sectionSpacing || '48px',
-        paddingBottom: config.sectionSpacing || '48px',
-        paddingLeft: config.containerPadding || '16px',
-        paddingRight: config.containerPadding || '16px'
-      }}
-    >
-      <h2 
-        className="text-center mb-8 font-bold"
-        style={{ 
-          color: config.textColor || '#1f2937', 
-          fontFamily: config.fontFamily || 'Inter',
-          fontSize: `calc(${config.baseFontSize || '16px'} * 1.875)`,
-          marginBottom: config.cardSpacing || '24px'
-        }}
-      >
-        Collections
-      </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 max-w-6xl mx-auto" style={{ gap: config.cardSpacing || '24px' }}>
-        {data.collections.map((collection) => (
-          <div 
-            key={collection.id}
-            className={`overflow-hidden cursor-pointer ${getShadowClass()} ${getTransitionClass()}`}
-            style={{
-              backgroundColor: config.itemCardBg || '#ffffff',
-              borderRadius: config.itemCardRadius || config.borderRadius || '8px',
-              border: `1px solid ${config.borderColor || '#e5e7eb'}`
-            }}
+    <div className="py-20 px-4" style={{ backgroundColor: config.backgroundColor }}>
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 
+            className="text-4xl font-bold mb-4"
+            style={{ color: config.textColor, fontFamily: config.fontFamily }}
           >
-            <div className="relative">
-              <img 
-                src={collection.image_url} 
-                alt={collection.title}
-                className="w-full h-32 object-cover"
-              />
-              <div 
-                className="absolute bottom-2 left-2 px-2 py-1 text-xs font-medium"
-                style={{
-                  backgroundColor: config.surfaceColor || '#ffffff',
-                  color: config.textColor || '#1f2937',
-                  borderRadius: config.borderRadius || '8px',
-                  fontFamily: config.fontFamily || 'Inter'
-                }}
-              >
-                {collection.title}
+            Featured Collections
+          </h2>
+          <p className="text-xl text-gray-600">Curated design collections for every project</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ gap: config.cardSpacing || '28px' }}>
+          {data.collections.map((collection) => (
+            <div 
+              key={collection.id}
+              className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              style={{
+                backgroundColor: config.itemCardBg || '#ffffff',
+                borderRadius: config.itemCardRadius || config.borderRadius || '4px',
+                border: `1px solid ${config.borderColor || '#e2e8f0'}`
+              }}
+            >
+              <div className="relative overflow-hidden">
+                <img 
+                  src={collection.image_url} 
+                  alt={collection.title}
+                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-white font-bold text-lg">{collection.title}</h3>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="text-center" style={{ marginTop: config.cardSpacing || '24px' }}>
-        <a 
-          href="#" 
-          className="font-medium hover:underline"
-          style={{ 
-            color: config.primaryColor || '#3b82f6',
-            fontFamily: config.fontFamily || 'Inter',
-            fontSize: config.baseFontSize || '16px'
-          }}
-        >
-          Explore More →
-        </a>
+          ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <button 
+            className="px-8 py-3 text-white font-semibold rounded-md hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: config.primaryColor }}
+          >
+            View All Collections
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,15 @@
 // Theme Registry - Central theme management system
+import { sellzzyTheme } from './sellzzy/index.js';
 import { modernGridTheme } from './modern-grid/index.js';
 import { classicLayoutTheme } from './classic-layout/index.js';
+import { vibrantCollageTheme } from './vibrant-collage/index.js';
+import { designpullerTheme } from './designpuller/index.js';
 
 export const themeRegistry = {
+  'sellzzy': sellzzyTheme,
+  'designpuller': designpullerTheme,
   'modern-grid': modernGridTheme,
+  'vibrant-collage': vibrantCollageTheme,
   'classic-layout': classicLayoutTheme,
 };
 

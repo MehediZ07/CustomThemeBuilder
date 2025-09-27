@@ -1,50 +1,45 @@
-import { SellzzyHeader } from './components/Header.jsx';
-import { SellzzyFooter } from './components/Footer.jsx';
-import { SellzzyHeroSection } from './components/HeroSection.jsx';
-import { SellzzyCollectionsSection } from './components/CollectionsSection.jsx';
-import { SellzzyItemsSection } from './components/ItemsSection.jsx';
-import { SellzzyBundleSection } from './components/BundleSection.jsx';
-import { SellzzySubscriptionSection } from './components/SubscriptionSection.jsx';
+import { VibrantHeader } from './components/Header.jsx';
+import { VibrantFooter } from './components/Footer.jsx';
+import { VibrantHeroSection } from './components/HeroSection.jsx';
+import { VibrantCollectionsSection } from './components/CollectionsSection.jsx';
+import { VibrantItemsSection } from './components/ItemsSection.jsx';
+import { VibrantBundleSection } from './components/BundleSection.jsx';
+import { VibrantSubscriptionSection } from './components/SubscriptionSection.jsx';
 
-export const classicLayoutTheme = {
-  id: 'classic-layout',
-  name: 'Classic Layout',
-  description: 'Professional e-commerce theme with modern design and optimal UX',
+export const vibrantCollageTheme = {
+  id: 'vibrant-collage',
+  name: 'Vibrant Collage',
+  description: 'Colorful, creative collage-style layout with vibrant design elements',
   category: 'ecommerce',
   
   // Default configuration
   defaultConfig: {
     // Colors
-    primaryColor: '#0E0E1E',
-    secondaryColor: '#f7d7d0',
+    primaryColor: '#8b5cf6',
+    secondaryColor: '#f59e0b',
     backgroundColor: '#ffffff',
-    surfaceColor: '#ffffff',
-    textColor: '#0E0E1E',
+    surfaceColor: '#f8fafc',
+    textColor: '#1f2937',
     textSecondary: '#6b7280',
     borderColor: '#e5e7eb',
-    accentColor1: '#f7d7d0',
-    accentColor2: '#e6c7ff',
     
     // Typography
-    fontFamily: 'Poppins',
-    displayFont: 'Poppins',
-    bodyFont: 'Inter',
+    fontFamily: 'Inter',
     baseFontSize: '16px',
-    lineHeight: '1.6',
+    lineHeight: '1.5',
     fontWeight: '400',
     
     // Spacing & Layout
-    borderRadius: '16px',
-    containerPadding: '24px',
-    sectionSpacing: '64px',
-    cardSpacing: '24px',
-    maxWidth: '1260px',
+    borderRadius: '12px',
+    containerPadding: '16px',
+    sectionSpacing: '48px',
+    cardSpacing: '20px',
     
     // Buttons
-    buttonPrimaryBg: '#0E0E1E',
+    buttonPrimaryBg: '#8b5cf6',
     buttonPrimaryText: '#ffffff',
-    buttonSecondaryBg: 'transparent',
-    buttonSecondaryText: '#0E0E1E',
+    buttonSecondaryBg: '#f3f4f6',
+    buttonSecondaryText: '#374151',
     buttonBorderRadius: '12px',
     buttonSize: 'medium',
     
@@ -52,14 +47,14 @@ export const classicLayoutTheme = {
     heroImage: 'https://daujxgrs0jsvx.cloudfront.net/media/Banner (1)_25XIYcj.jpg',
     heroTitle: 'UNLIMITED CREATIVITY AT YOUR FINGERTIPS!',
     heroSubtitle: 'Discover thousands of premium design resources',
-    heroOverlay: 'linear-gradient(90deg, rgba(247,215,208,0.3) 0%, rgba(230,199,255,0.3) 100%)',
-    heroOverlayOpacity: '0.8',
+    heroOverlay: '#000000',
+    heroOverlayOpacity: '0.3',
     
     // Items Section
     itemsPerRow: '4',
     itemsBackground: '#ffffff',
     itemCardBg: '#ffffff',
-    itemCardRadius: '16px',
+    itemCardRadius: '12px',
     
     // Effects
     cardShadow: 'medium',
@@ -82,14 +77,14 @@ export const classicLayoutTheme = {
 
   // Theme-specific components
   components: {
-    Header: SellzzyHeader,
-    Footer: SellzzyFooter,
+    Header: VibrantHeader,
+    Footer: VibrantFooter,
     sections: {
-      hero: SellzzyHeroSection,
-      collections: SellzzyCollectionsSection,
-      items: SellzzyItemsSection,
-      bundles: SellzzyBundleSection,
-      subscription: SellzzySubscriptionSection
+      hero: VibrantHeroSection,
+      collections: VibrantCollectionsSection,
+      items: VibrantItemsSection,
+      bundles: VibrantBundleSection,
+      subscription: VibrantSubscriptionSection
     }
   },
 

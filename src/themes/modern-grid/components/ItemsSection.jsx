@@ -1,26 +1,26 @@
 import React from 'react';
 
-export const ModernItemsSection = ({ config, data }) => {
+export const ClassicItemsSection = ({ config, data }) => {
   const getGridCols = () => {
-    const cols = config.itemsPerRow || '4';
+    const cols = config.itemsPerRow || '3';
     return {
       '2': 'grid-cols-1 md:grid-cols-2',
-      '3': 'grid-cols-2 md:grid-cols-3',
-      '4': 'grid-cols-2 md:grid-cols-4',
-      '5': 'grid-cols-2 md:grid-cols-5',
-      '6': 'grid-cols-3 md:grid-cols-6'
-    }[cols] || 'grid-cols-2 md:grid-cols-4';
+      '3': 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+      '4': 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
+      '5': 'grid-cols-2 md:grid-cols-3 lg:grid-cols-5',
+      '6': 'grid-cols-2 md:grid-cols-4 lg:grid-cols-6'
+    }[cols] || 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
   };
 
   const getShadowClass = () => {
-    const shadow = config.cardShadow || 'medium';
+    const shadow = config.cardShadow || 'large';
     return {
       'none': '',
       'small': 'shadow-sm hover:shadow-md',
       'medium': 'shadow-md hover:shadow-lg',
       'large': 'shadow-lg hover:shadow-xl',
       'xl': 'shadow-xl hover:shadow-2xl'
-    }[shadow] || 'shadow-md hover:shadow-lg';
+    }[shadow] || 'shadow-lg hover:shadow-xl';
   };
 
   const getTransitionClass = () => {
@@ -34,122 +34,142 @@ export const ModernItemsSection = ({ config, data }) => {
 
   return (
     <div 
-      className="py-12"
       style={{ 
-        backgroundColor: config.itemsBackground || '#f9fafb',
-        paddingLeft: config.containerPadding || '16px',
-        paddingRight: config.containerPadding || '16px'
+        backgroundColor: config.itemsBackground || '#f8fafc',
+        paddingTop: config.sectionSpacing || '56px',
+        paddingBottom: config.sectionSpacing || '56px',
+        paddingLeft: config.containerPadding || '20px',
+        paddingRight: config.containerPadding || '20px'
       }}
     >
-      <div className="flex items-center justify-between mb-8 max-w-6xl mx-auto">
-        <h2 
-          className="text-3xl font-bold"
-          style={{ 
-            color: config.textColor || '#1f2937', 
-            fontFamily: config.fontFamily || 'Inter',
-            fontSize: `calc(${config.baseFontSize || '16px'} * 1.875)`
-          }}
-        >
-          All Items
-        </h2>
-        <a 
-          href="#" 
-          className="font-medium hover:underline"
-          style={{ 
-            color: config.primaryColor || '#3b82f6',
-            fontSize: config.baseFontSize || '16px'
-          }}
-        >
-          View All
-        </a>
-      </div>
-      <div className={`grid ${getGridCols()} max-w-6xl mx-auto`} style={{ gap: config.cardSpacing || '24px' }}>
-        {data.items.map((item) => (
-          <div 
-            key={item.id}
-            className={`overflow-hidden ${getShadowClass()} ${getTransitionClass()}`}
-            style={{
-              backgroundColor: config.itemCardBg || '#ffffff',
-              borderRadius: config.itemCardRadius || config.borderRadius || '8px',
-              border: `1px solid ${config.borderColor || '#e5e7eb'}`
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-center justify-between mb-12">
+          <div>
+            <h2 
+              className="font-bold mb-2"
+              style={{ 
+                color: config.textColor || '#1e293b', 
+                fontFamily: config.fontFamily || 'Georgia',
+                fontSize: `calc(${config.baseFontSize || '16px'} * 2.25)`,
+                lineHeight: config.lineHeight || '1.6'
+              }}
+            >
+              Premium Items
+            </h2>
+            <p 
+              style={{
+                color: config.textSecondary || '#64748b',
+                fontFamily: config.fontFamily || 'Georgia',
+                fontSize: `calc(${config.baseFontSize || '16px'} * 1.25)`
+              }}
+            >
+              Hand-picked designs for professionals
+            </p>
+          </div>
+          <button 
+            className={`px-6 py-3 border-2 font-semibold ${getTransitionClass()}`}
+            style={{ 
+              borderColor: config.primaryColor || '#2563eb', 
+              color: config.primaryColor || '#2563eb',
+              borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
+              fontFamily: config.fontFamily || 'Georgia'
             }}
           >
-            <img 
-              src={item.image_url} 
-              alt={item.title}
-              className="w-full h-48 object-cover"
-            />
-            <div style={{ padding: config.containerPadding || '16px' }}>
-              <h3 
-                className="font-semibold mb-2 line-clamp-2"
-                style={{
-                  color: config.textColor || '#1f2937',
-                  fontFamily: config.fontFamily || 'Inter',
-                  fontSize: `calc(${config.baseFontSize || '16px'} * 0.875)`,
-                  fontWeight: config.fontWeight || '600'
-                }}
-              >
-                {item.title}
-              </h3>
-              <div className="mb-2">
-                <span 
-                  className="text-lg font-bold" 
-                  style={{ 
-                    color: config.primaryColor || '#3b82f6',
-                    fontFamily: config.fontFamily || 'Inter'
+            View All Items
+          </button>
+        </div>
+        
+        <div className={`grid ${getGridCols()}`} style={{ gap: config.cardSpacing || '28px' }}>
+          {data.items.map((item) => (
+            <div 
+              key={item.id}
+              className={`overflow-hidden ${getShadowClass()} ${getTransitionClass()}`}
+              style={{
+                backgroundColor: config.itemCardBg || '#ffffff',
+                borderRadius: config.itemCardRadius || config.borderRadius || '4px',
+                border: `1px solid ${config.borderColor || '#e2e8f0'}`
+              }}
+            >
+              <img 
+                src={item.image_url} 
+                alt={item.title}
+                className="w-full h-56 object-cover"
+              />
+              <div style={{ padding: `calc(${config.containerPadding || '20px'} * 1.2)` }}>
+                <h3 
+                  className="font-bold mb-3 line-clamp-2"
+                  style={{
+                    color: config.textColor || '#1e293b',
+                    fontFamily: config.fontFamily || 'Georgia',
+                    fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`,
+                    fontWeight: config.fontWeight || '700'
                   }}
                 >
-                  ${item.price}
-                </span>
-                {item.comparePrice && (
+                  {item.title}
+                </h3>
+                <div className="mb-4">
                   <span 
-                    className="text-sm line-through ml-2"
+                    className="font-bold" 
                     style={{ 
-                      color: config.textSecondary || '#6b7280',
-                      fontFamily: config.fontFamily || 'Inter'
+                      color: config.primaryColor || '#2563eb',
+                      fontFamily: config.fontFamily || 'Georgia',
+                      fontSize: `calc(${config.baseFontSize || '16px'} * 1.5)`
                     }}
                   >
-                    ${item.comparePrice}
+                    ${item.price}
                   </span>
-                )}
-              </div>
-              <div 
-                className="text-xs mb-3"
-                style={{ 
-                  color: config.textSecondary || '#6b7280',
-                  fontFamily: config.fontFamily || 'Inter'
-                }}
-              >
-                By Designpuller
-              </div>
-              <div className="flex space-x-2">
-                <button 
-                  className={`flex-1 py-2 px-3 text-xs font-medium ${getTransitionClass()}`}
+                  {item.comparePrice && (
+                    <span 
+                      className="line-through ml-3"
+                      style={{ 
+                        color: config.textSecondary || '#64748b',
+                        fontFamily: config.fontFamily || 'Georgia',
+                        fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`
+                      }}
+                    >
+                      ${item.comparePrice}
+                    </span>
+                  )}
+                </div>
+                <div 
+                  className="mb-4"
                   style={{
-                    backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#3b82f6',
-                    color: config.buttonPrimaryText || '#ffffff',
-                    borderRadius: config.buttonBorderRadius || config.borderRadius || '8px',
-                    fontFamily: config.fontFamily || 'Inter'
+                    color: config.textSecondary || '#64748b',
+                    fontFamily: config.fontFamily || 'Georgia',
+                    fontSize: `calc(${config.baseFontSize || '16px'} * 0.875)`
                   }}
                 >
-                  Add to Cart
-                </button>
-                <button 
-                  className={`px-3 py-2 text-xs font-medium ${getTransitionClass()}`}
-                  style={{
-                    backgroundColor: config.buttonSecondaryBg || '#f3f4f6',
-                    color: config.buttonSecondaryText || '#374151',
-                    borderRadius: config.buttonBorderRadius || config.borderRadius || '8px',
-                    border: `1px solid ${config.borderColor || '#e5e7eb'}`,
-                    fontFamily: config.fontFamily || 'Inter'
-                  }}
-                >
-                  View Product
-                </button>
+                  By Designpuller
+                </div>
+                <div className="space-y-2">
+                  <button 
+                    className={`w-full py-3 font-semibold ${getTransitionClass()}`}
+                    style={{ 
+                      backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#2563eb',
+                      color: config.buttonPrimaryText || '#ffffff',
+                      borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
+                      fontFamily: config.fontFamily || 'Georgia'
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                  <button 
+                    className={`w-full py-3 border-2 font-semibold ${getTransitionClass()}`}
+                    style={{
+                      backgroundColor: config.buttonSecondaryBg || '#f1f5f9',
+                      color: config.buttonSecondaryText || '#334155',
+                      borderColor: config.borderColor || '#e2e8f0',
+                      borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
+                      fontFamily: config.fontFamily || 'Georgia'
+                    }}
+                  >
+                    View Details
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

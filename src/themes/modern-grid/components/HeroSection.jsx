@@ -1,55 +1,53 @@
 import React from 'react';
 
-export const ModernHeroSection = ({ config, data }) => {
+export const ClassicHeroSection = ({ config, data }) => {
   return (
     <div 
-      className="relative flex items-center justify-center border-b overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,${config.heroOverlayOpacity || 0.4}), rgba(0,0,0,${config.heroOverlayOpacity || 0.4})), url("${config.heroImage}")`,
-        backgroundColor: config.heroOverlay || '#000000',
-        paddingTop: config.sectionSpacing || '48px',
-        paddingBottom: config.sectionSpacing || '48px',
-        paddingLeft: config.containerPadding || '16px',
-        paddingRight: config.containerPadding || '16px',
-        minHeight: '300px'
+        backgroundImage: `linear-gradient(rgba(0,0,0,${config.heroOverlayOpacity || 0.5}), rgba(0,0,0,${config.heroOverlayOpacity || 0.5})), url("${config.heroImage}")`,
+        backgroundColor: config.heroOverlay || '#1e293b',
+        paddingTop: `calc(${config.sectionSpacing || '56px'} * 1.5)`,
+        paddingBottom: `calc(${config.sectionSpacing || '56px'} * 1.5)`,
+        paddingLeft: config.containerPadding || '20px',
+        paddingRight: config.containerPadding || '20px',
+        minHeight: '400px'
       }}
     >
-      <div className="z-10 flex flex-col items-center justify-center h-full w-full text-center max-w-4xl">
+      <div className="text-center max-w-4xl">
         <h1 
-          className="font-semibold mb-6 leading-tight text-white"
+          className="font-bold text-white mb-8 leading-tight"
           style={{ 
-            fontFamily: config.fontFamily || 'Inter',
-            fontSize: `calc(${config.baseFontSize || '16px'} * 2.5)`,
-            lineHeight: config.lineHeight || '1.5',
-            fontWeight: config.fontWeight || '600'
+            fontFamily: config.fontFamily || 'Georgia',
+            fontSize: `calc(${config.baseFontSize || '16px'} * 3)`,
+            lineHeight: config.lineHeight || '1.6',
+            fontWeight: config.fontWeight || '700'
           }}
         >
-          {config.heroTitle || 'Welcome to Our Store'}
+          {config.heroTitle || 'Premium Collections'}
         </h1>
-        {config.heroSubtitle && (
-          <p 
-            className="text-white mb-8 opacity-90"
-            style={{
-              fontFamily: config.fontFamily || 'Inter',
-              fontSize: `calc(${config.baseFontSize || '16px'} * 1.25)`,
-              lineHeight: config.lineHeight || '1.5'
-            }}
-          >
-            {config.heroSubtitle}
-          </p>
-        )}
-        <button 
-          className="font-semibold transition-colors"
+        <p 
+          className="text-white mb-8 opacity-90"
           style={{
-            backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#3b82f6',
-            color: config.buttonPrimaryText || '#ffffff',
-            borderRadius: config.buttonBorderRadius || config.borderRadius || '8px',
-            fontFamily: config.fontFamily || 'Inter',
-            fontSize: config.baseFontSize || '16px',
-            padding: config.buttonSize === 'small' ? '8px 16px' : config.buttonSize === 'large' ? '16px 32px' : '12px 24px'
+            fontFamily: config.fontFamily || 'Georgia',
+            fontSize: `calc(${config.baseFontSize || '16px'} * 1.25)`,
+            lineHeight: config.lineHeight || '1.6'
           }}
         >
-          Shop Now
+          {config.heroSubtitle || 'Discover premium design resources for your creative projects'}
+        </p>
+        <button 
+          className="font-bold transition-colors"
+          style={{
+            backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#2563eb',
+            color: config.buttonPrimaryText || '#ffffff',
+            borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
+            fontFamily: config.fontFamily || 'Georgia',
+            fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`,
+            padding: config.buttonSize === 'small' ? '12px 24px' : config.buttonSize === 'large' ? '20px 40px' : '16px 32px'
+          }}
+        >
+          Explore Collection
         </button>
       </div>
     </div>

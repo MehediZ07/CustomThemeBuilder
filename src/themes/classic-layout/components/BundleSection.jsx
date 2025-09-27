@@ -1,162 +1,111 @@
 import React from 'react';
 
-export const ClassicBundleSection = ({ config, data }) => {
-  const getShadowClass = () => {
-    const shadow = config.cardShadow || 'large';
-    return {
-      'none': '',
-      'small': 'shadow-sm hover:shadow-md',
-      'medium': 'shadow-md hover:shadow-lg',
-      'large': 'shadow-lg hover:shadow-xl',
-      'xl': 'shadow-xl hover:shadow-2xl'
-    }[shadow] || 'shadow-lg hover:shadow-xl';
-  };
-
-  const getTransitionClass = () => {
-    const speed = config.transitionSpeed || 'medium';
-    return {
-      'fast': 'transition-all duration-150',
-      'medium': 'transition-all duration-300',
-      'slow': 'transition-all duration-500'
-    }[speed] || 'transition-all duration-300';
-  };
-
+export const SellzzyBundleSection = ({ config, data }) => {
   return (
     <div 
       style={{
-        backgroundColor: config.itemsBackground || '#f8fafc',
-        paddingTop: config.sectionSpacing || '56px',
-        paddingBottom: config.sectionSpacing || '56px',
-        paddingLeft: config.containerPadding || '20px',
-        paddingRight: config.containerPadding || '20px'
+        backgroundColor: config.surfaceColor || '#ffffff',
+        paddingTop: config.sectionSpacing || '64px',
+        paddingBottom: config.sectionSpacing || '64px',
+        paddingLeft: config.containerPadding || '24px',
+        paddingRight: config.containerPadding || '24px'
       }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="mx-auto" style={{ maxWidth: config.maxWidth || '1260px' }}>
         <div className="text-center mb-12">
           <h2 
             className="font-bold mb-4"
             style={{ 
-              color: config.textColor || '#1e293b', 
-              fontFamily: config.fontFamily || 'Georgia',
-              fontSize: `calc(${config.baseFontSize || '16px'} * 2.25)`
+              color: config.textColor || '#0E0E1E', 
+              fontFamily: config.displayFont || 'Poppins',
+              fontSize: 'clamp(28px, 4vw, 48px)'
             }}
           >
-            Premium Bundles
+            Bundle
           </h2>
-          <p 
-            style={{
-              color: config.textSecondary || '#64748b',
-              fontFamily: config.fontFamily || 'Georgia',
-              fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`
-            }}
-          >
-            Complete design collections at exceptional value
-          </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto" style={{ gap: config.cardSpacing || '28px' }}>
+        {/* Bundle Grid - 2x2 on desktop, 1 column on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {data.bundles.map((bundle) => (
             <div 
               key={bundle.id}
-              className={`overflow-hidden ${getShadowClass()} ${getTransitionClass()}`}
+              className="group relative overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-xl"
               style={{
-                backgroundColor: config.itemCardBg || '#ffffff',
-                borderRadius: config.itemCardRadius || config.borderRadius || '4px',
-                border: `1px solid ${config.borderColor || '#e2e8f0'}`
+                borderRadius: config.itemCardRadius || config.borderRadius || '16px',
+                minHeight: '300px'
               }}
             >
-              <div className="relative">
-                <img 
-                  src={bundle.image_url} 
-                  alt={bundle.title}
-                  className="w-full h-56 object-cover"
-                />
-                <div 
-                  className="absolute top-4 right-4 px-3 py-1 text-sm font-semibold"
-                  style={{
-                    backgroundColor: config.primaryColor || '#2563eb',
-                    color: config.buttonPrimaryText || '#ffffff',
-                    borderRadius: config.borderRadius || '4px'
-                  }}
-                >
-                  Bundle
-                </div>
-              </div>
+              {/* Background Image */}
+              <img 
+                src={bundle.image_url} 
+                alt={bundle.title}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
               
-              <div style={{ padding: `calc(${config.containerPadding || '20px'} * 1.2)` }}>
+              {/* Dark Overlay at Bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              
+              {/* Content */}
+              <div className="relative h-full flex flex-col justify-end p-6">
                 <h3 
-                  className="font-bold mb-3 line-clamp-2"
+                  className="text-white font-bold mb-3 line-clamp-2"
                   style={{
-                    color: config.textColor || '#1e293b',
-                    fontFamily: config.fontFamily || 'Georgia',
-                    fontSize: `calc(${config.baseFontSize || '16px'} * 1.25)`,
-                    lineHeight: config.lineHeight || '1.6'
+                    fontFamily: config.displayFont || 'Poppins',
+                    fontSize: 'clamp(18px, 3vw, 24px)',
+                    lineHeight: '1.3'
                   }}
                 >
                   {bundle.title}
                 </h3>
                 
-                <p 
-                  className="mb-4 line-clamp-2"
-                  style={{
-                    color: config.textSecondary || '#64748b',
-                    fontFamily: config.fontFamily || 'Georgia',
-                    fontSize: `calc(${config.baseFontSize || '16px'} * 0.875)`
-                  }}
-                >
-                  {bundle.description}
-                </p>
-                
-                <div className="flex items-center justify-between mb-4">
-                  <div>
+                <div className="mb-4">
+                  <span 
+                    className="text-white font-bold text-2xl"
+                    style={{ 
+                      fontFamily: config.bodyFont || 'Inter'
+                    }}
+                  >
+                    ${bundle.price}
+                  </span>
+                  {bundle.comparePrice && (
                     <span 
-                      className="font-bold" 
+                      className="text-white/70 line-through ml-2 text-lg"
                       style={{ 
-                        color: config.primaryColor || '#2563eb',
-                        fontFamily: config.fontFamily || 'Georgia',
-                        fontSize: `calc(${config.baseFontSize || '16px'} * 1.5)`
+                        fontFamily: config.bodyFont || 'Inter'
                       }}
                     >
-                      ${bundle.price}
+                      ${bundle.comparePrice}
                     </span>
-                    {bundle.comparePrice && (
-                      <span 
-                        className="line-through ml-2"
-                        style={{ 
-                          color: config.textSecondary || '#64748b',
-                          fontFamily: config.fontFamily || 'Georgia',
-                          fontSize: config.baseFontSize || '16px'
-                        }}
-                      >
-                        ${bundle.comparePrice}
-                      </span>
-                    )}
-                  </div>
+                  )}
                 </div>
                 
+                {/* Action Buttons */}
                 <div className="flex space-x-3">
                   <button 
-                    className={`flex-1 py-3 font-semibold ${getTransitionClass()}`}
+                    className="px-4 py-2 font-medium transition-all duration-200 hover:-translate-y-0.5 backdrop-blur-sm"
                     style={{
-                      backgroundColor: config.buttonSecondaryBg || '#f1f5f9',
-                      color: config.buttonSecondaryText || '#334155',
-                      borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
-                      border: `1px solid ${config.borderColor || '#e2e8f0'}`,
-                      fontFamily: config.fontFamily || 'Georgia'
+                      backgroundColor: 'rgba(255,255,255,0.2)',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: config.buttonBorderRadius || '12px',
+                      fontFamily: config.bodyFont || 'Inter',
+                      fontSize: '14px'
                     }}
                   >
-                    Preview
+                    View Bundle
                   </button>
                   <button 
-                    className={`flex-1 py-3 font-semibold ${getTransitionClass()}`}
+                    className="px-4 py-2 font-medium transition-all duration-200 hover:-translate-y-0.5"
                     style={{ 
-                      backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#2563eb',
+                      backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#0E0E1E',
                       color: config.buttonPrimaryText || '#ffffff',
-                      borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
-                      fontFamily: config.fontFamily || 'Georgia'
+                      borderRadius: config.buttonBorderRadius || '12px',
+                      fontFamily: config.bodyFont || 'Inter',
+                      fontSize: '14px'
                     }}
                   >
-                    Get Bundle
+                    Add To Cart
                   </button>
                 </div>
               </div>
@@ -164,15 +113,16 @@ export const ClassicBundleSection = ({ config, data }) => {
           ))}
         </div>
         
-        <div className="text-center" style={{ marginTop: `calc(${config.cardSpacing || '28px'} * 2)` }}>
+        {/* View All Button */}
+        <div className="text-center mt-12">
           <button 
-            className={`px-8 py-4 font-bold ${getTransitionClass()}`}
+            className="px-8 py-4 font-bold transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
             style={{ 
-              backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#2563eb',
+              backgroundColor: config.buttonPrimaryBg || config.primaryColor || '#0E0E1E',
               color: config.buttonPrimaryText || '#ffffff',
-              borderRadius: config.buttonBorderRadius || config.borderRadius || '4px',
-              fontFamily: config.fontFamily || 'Georgia',
-              fontSize: `calc(${config.baseFontSize || '16px'} * 1.125)`
+              borderRadius: config.buttonBorderRadius || config.borderRadius || '16px',
+              fontFamily: config.bodyFont || 'Inter',
+              fontSize: '16px'
             }}
           >
             View All Bundles
